@@ -1,5 +1,6 @@
-package dev.java10x.cadastroDeNinjas.model;
+package dev.java10x.cadastroDeNinjas.Ninjas.Model;
 
+import dev.java10x.cadastroDeNinjas.Missoes.Model.MissaoModel;
 import jakarta.persistence.*;
 
 // JPA = Java Persistence API
@@ -8,11 +9,17 @@ import jakarta.persistence.*;
 @Table(name = "tb_cadastro") // O @Table é usado para configurar detalhes específicos da tabela quando o mapeamento padrão (@Entity) não é suficiente.
 public class NinjaModel {
     @Id // Informa ao java que o atributo logo a baixo dele deverá ser um ID
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // Geração de IDs, informando que a geração será de números
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // Geração de IDs, informando que a geração será sequencial.
     private Long id;
     private String nome;
     private String email;
     private int idade;
+    @ManyToOne
+    @JoinColumn(name = "missoes_id") // Realizando o JOIN na tabela - "Mapeamento de tabelas"
+    // missoes_id é a Foreign Key - Possui um mapa para dizer o que vem de uma tabela
+    // Informa que muitos elementos (Missões) poderão conter um unico elemento (Ninja) da tabla.
+    // @ManyToOne - MUITOS ninjas PARA UMA única missão.
+    private MissaoModel missoes;
 
     public NinjaModel() {}
 
@@ -25,7 +32,6 @@ public class NinjaModel {
     public String getNome() {
         return nome;
     }
-
 
     public void setNome(String nome) {
         this.nome = nome;
