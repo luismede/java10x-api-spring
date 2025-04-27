@@ -1,6 +1,8 @@
 package dev.java10x.cadastroDeNinjas.Missoes.Model;
 
-import dev.java10x.cadastroDeNinjas.Ninjas.Model.NinjaModel;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import dev.java10x.cadastroDeNinjas.Ninjas.Model.Ninja;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -30,7 +32,9 @@ public class MissaoModel {
     */
 
     @OneToMany(mappedBy = "missoes")
+//    @JsonBackReference // <- Impede serialização para trás
     // UMA missão PARA MUITOS ninjas.
-    private List<NinjaModel> ninjas;
+    @JsonIgnore
+    private List<Ninja> ninjas;
 
 }
