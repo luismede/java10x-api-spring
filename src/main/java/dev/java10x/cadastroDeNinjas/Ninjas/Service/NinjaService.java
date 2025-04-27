@@ -1,11 +1,11 @@
 package dev.java10x.cadastroDeNinjas.Ninjas.Service;
 
-import dev.java10x.cadastroDeNinjas.Ninjas.Model.NinjaModel;
+import dev.java10x.cadastroDeNinjas.Ninjas.Model.Ninja;
 import dev.java10x.cadastroDeNinjas.Ninjas.Repository.NinjaRepository;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class NinjaService {
@@ -16,12 +16,17 @@ public class NinjaService {
     }
 
     // Listar Ninjas
-    public List<NinjaModel> getAll() {
+    public List<Ninja> getAll() {
         return ninjaRepository.findAll();
     }
 
+    // Lista Ninja pelo Id
+    public Optional<Ninja> getById(Long id) {
+        return ninjaRepository.findById(id);
+    }
+
     // Cadastrar Ninjas
-    public NinjaModel save(NinjaModel ninja) {
+    public Ninja save(Ninja ninja) {
         return ninjaRepository.save(ninja);
     }
 
@@ -29,4 +34,23 @@ public class NinjaService {
     public void delete(Long id) {
         ninjaRepository.deleteById(id);
     }
+
+    // Atualizar Missão
+    public Ninja updateMission(Long id, Ninja ninjaAtualizado) {
+        Ninja ninja = ninjaRepository.findById(id).orElseThrow(() -> new RuntimeException("Ninja não encontrado"));
+
+        ninja.setMissoes(ninjaAtualizado.getMissoes());
+
+        return ninjaRepository.save(ninja);
+    }
+
+    // Atualizar E-mail
+    public Ninja updateEmail(Long id, Ninja ninjaAtualizado) {
+        Ninja ninja = ninjaRepository.findById(id).orElseThrow(() -> new RuntimeException("Ninja não encontrado"));
+
+        ninja.setEmail(ninjaAtualizado.getEmail());
+
+        return ninjaRepository.save(ninja);
+    }
 }
+
