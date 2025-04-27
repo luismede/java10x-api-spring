@@ -1,6 +1,5 @@
 package dev.java10x.cadastroDeNinjas.Missoes.Model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import dev.java10x.cadastroDeNinjas.Ninjas.Model.Ninja;
 import jakarta.persistence.*;
@@ -18,7 +17,7 @@ import java.util.List;
 @AllArgsConstructor // Criando um construtor AllArgs
 @Data // Criando os Getter e Setters
 
-public class MissaoModel {
+public class Missao {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

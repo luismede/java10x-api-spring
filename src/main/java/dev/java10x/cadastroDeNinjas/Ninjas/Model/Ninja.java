@@ -1,7 +1,6 @@
 package dev.java10x.cadastroDeNinjas.Ninjas.Model;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import dev.java10x.cadastroDeNinjas.Missoes.Model.MissaoModel;
+import dev.java10x.cadastroDeNinjas.Missoes.Model.Missao;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -33,6 +32,6 @@ public class Ninja {
     // Informa que muitos elementos (Missões) poderão conter um unico elemento (Ninja) da tabla.
     // @ManyToOne - MUITOS ninjas PARA UMA única missão.
 
-    private MissaoModel missoes;
+    private Missao missoes;
 
 }

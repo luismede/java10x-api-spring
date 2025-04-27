@@ -34,7 +34,7 @@ public class NinjaController {
         return ninjaService.save(ninja);
     }
 
-    @PostMapping("/excluir/{id}")
+    @DeleteMapping("/excluir/{id}")
     public void delete(@PathVariable Long id) {
         ninjaService.delete(id);
     }
